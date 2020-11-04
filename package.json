@@ -11,11 +11,19 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "mongodb": "^3.6.2",
     "morgan": "~1.9.1"
   },
   "description": "A CRUD web application with Mongodb, express and node.js",
   "main": "app.js",
-  "keywords": ["express", "nodejs", "monogodb", "CRUD", "Registration", "serverside"],
+  "keywords": [
+    "express",
+    "nodejs",
+    "monogodb",
+    "CRUD",
+    "Registration",
+    "serverside"
+  ],
   "devDependencies": {},
   "author": "Reza Firouzi",
   "license": "ISC"
