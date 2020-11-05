@@ -1,10 +1,70 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+  <title>Registration CRUD Web Application</title>
+</head>
+<body>
+
+<div class="container">
+  <div class="row" >
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8" style="margin-top: 15px;">
+      <h2>Clients Registration Form</h2><br><br>
+      <form class="needs-validation" novalidate>
+        <div class="form-row">
+          <div class="col">
+            <input type="text" class="form-control" placeholder="First name">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Last name">
+          </div>
+        </div><br>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword">
+          </div>
+        </div>
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Gender:</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" value="male">
+                <label class="form-check-label" for="gridRadios">Male</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" value="female">
+                <label class="form-check-label" for="gridRadios">Female</label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+  <div class="row" >
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8"></div>
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+</body>
 </html>
