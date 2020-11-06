@@ -61,14 +61,14 @@
     <div class="col-lg-8 second-row">
       <ul class="list-group" id="clients-list">
         <!-- Displaying the forms -->
-        <% for (let doc of docs) { %>
+        <% for (let doc of docs) {  %>
           <li class="list-group-item">
             <div class="row">
               <div class="col-md-4">First name: <span class="blue"><%= doc.firstName %></span></div>
               <div class="col-md-4">Email: <span class="blue font"><%= doc.email %></span></div>
               <div class="col-md-4 tex-right">
                 <button type="button" class="btn btn-secondary">Edit</button>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-danger" id="deleteBtn<%= doc._id %>" onclick="deleteClient('<%= doc._id %>')">Delete</button>
               </div>
               <div class="col-md-4">Last name: <span class="blue"><%= doc.lastName %></span></div>
               <div class="col-md-4">Sex: <span class="blue"><%= doc.gender %></span></div>

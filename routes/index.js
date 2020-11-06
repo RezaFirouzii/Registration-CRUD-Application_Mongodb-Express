@@ -20,4 +20,12 @@ router.post('/', (req, res) => {
   });
 });
 
+/* DELETE a Form */
+router.delete('/', (req, res) => {
+  db.getDB().collection(collection).findOneAndDelete({ _id: db.getPrimaryKey(req.body.id) }, (err, result) => {
+    if (err) console.log(err);
+    else res.json(result);
+  });
+});
+
 module.exports = router;
