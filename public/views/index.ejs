@@ -20,20 +20,20 @@
       <form id="form">
         <div class="form-row">
           <div class="col-md-6 mb-3">
-            <input type="text" class="form-control" placeholder="First name">
+            <input type="text" class="form-control" placeholder="First name" required>
           </div>
           <div class="col-md-6 mb-3">
-            <input type="text" class="form-control" placeholder="Last name">
+            <input type="text" class="form-control" placeholder="Last name" required>
           </div>
         </div><br>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputEmail">Email</label>
-            <input type="email" class="form-control">
+            <input type="email" class="form-control" required>
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword">Password</label>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" required>
           </div>
         </div>
         <fieldset class="form-group">
@@ -41,7 +41,7 @@
             <legend class="col-form-label col-sm-2 pt-0">Gender:</legend>
             <div class="col-sm-10">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="gridRadios" id="radio1" value="male">
+                <input class="form-check-input" type="radio" name="gridRadios" id="radio1" value="male" required>
                 <label class="form-check-label" for="radio1">Male</label>
               </div>
               <div class="form-check">
@@ -51,7 +51,7 @@
             </div>
           </div>
         </fieldset>
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary" id="register-btn">Register</button>
       </form>
     </div>
     <div class="col-lg-2"></div>
@@ -65,7 +65,7 @@
           <li class="list-group-item">
             <div class="row">
               <div class="col-md-4">First name: <span class="blue"><%= doc.firstName %></span></div>
-              <div class="col-md-4">Email: <span class="blue"><%= doc.email %></span></div>
+              <div class="col-md-4">Email: <span class="blue font"><%= doc.email %></span></div>
               <div class="col-md-4 tex-right">
                 <button type="button" class="btn btn-secondary">Edit</button>
                 <button type="button" class="btn btn-danger">Delete</button>
