@@ -28,4 +28,14 @@ router.delete('/', (req, res) => {
   });
 });
 
+/* UPDATE a Form */
+router.put('/', (req, res) => {
+  const filter = { _id: db.getPrimaryKey(req.body.id) };
+  delete req.body.id;
+  db.getDB().collection(collection).findOneAndUpdate(filter,{ $set: req.body },{ returnOriginal: false },(err, result) => {
+        if (err) console.log(err);
+        else res.json(result);
+      });
+});
+
 module.exports = router;
