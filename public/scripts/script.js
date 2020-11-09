@@ -2,6 +2,7 @@ const clientsList = document.getElementById('clients-list');
 const submitButton = document.getElementById('register-btn');
 const userInputs = document.querySelectorAll('.form-control');
 const radioButtons = document.querySelectorAll('.form-check-input');
+const alertBox = document.getElementById('alertBox');
 
 function resetInputs() {
     userInputs.forEach(input => {
@@ -10,6 +11,32 @@ function resetInputs() {
     radioButtons.forEach(input => {
         input.checked = false;
     });
+}
+
+// showing success or failure message based on flag
+function alertMessage(flag, message) {
+    alertBox.style.display = "none";
+    alertBox.classList.remove('fade-out')
+    if (flag) {
+        alertBox.classList.add('alert-success');
+        alertBox.classList.remove('alert-danger');
+    } else {
+        alertBox.classList.add('alert-danger');
+        alertBox.classList.remove('alert-success');
+    }
+    alertBox.innerHTML = message;
+    alertBox.style.display = "block";
+    alertBox.classList.add('fade-out');
+    setTimeout(() => {
+        alertBox.style.display = "none";
+    }, 5000);
+}
+
+// validating form inputs
+function validateForm() {
+    return userInputs[0].value && userInputs[1].value &&
+        userInputs[2].value && userInputs[3].value &&
+        (radioButtons[0].checked || radioButtons[1].checked);
 }
 
 // Template of a list item for a new form
@@ -31,20 +58,13 @@ function getTemplate(doc) {
                         </div>`;
     return template;
 }
-
-// validating form inputs
-function validateForm() {
-    return userInputs[0].value && userInputs[1].value &&
-           userInputs[2].value && userInputs[3].value &&
-           (radioButtons[0].checked || radioButtons[1].checked);
-}
 /**
  * Post Request for registering clients
  */
 submitButton.addEventListener("click", (e) => {
     e.preventDefault();
     if (!validateForm()) {
-        alert("Please provide valid inputs!");
+        alertMessage(false, "Please provide valid inputs!")
         return;
     }
     const gender = radioButtons[0].checked ? "MALE" : "FEMALE";
@@ -68,6 +88,10 @@ submitButton.addEventListener("click", (e) => {
             const doc = jsonResponse.ops[0];
             const newForm = getTemplate(doc);
             clientsList.append(newForm);
+            alertMessage(true, "Successfully registered a new client");
+        } else {
+            alertMessage(false, "Error with client registration!");
+            console.log(jsonResponse.error);
         }
         resetInputs();
     });
@@ -88,10 +112,14 @@ function deleteClient(id) {
     }).then(response => {
         return response.json();
     }).then(jsonResponse => {
-        if (jsonResponse.ok) {
+        if (jsonResponse.ok && !jsonResponse.error) {
             const deleteBtn = document.getElementById('deleteBtn' + jsonResponse.value._id);
             const removedChild = deleteBtn.parentNode.parentNode.parentNode;
             clientsList.removeChild(removedChild);
+            alertMessage(true, "Successfully deleted client : " + jsonResponse.value.firstName + " " + jsonResponse.value.lastName);
+        } else {
+            alertMessage(false, "Error with deleting the form!");
+            console.log(jsonResponse.error);
         }
     });
 }
@@ -106,6 +134,10 @@ function editClient(id) {
     });
     if (radioButtons[0].checked || radioButtons[1].checked)
         updatedDocument.gender = radioButtons[0].checked ? "MALE" : "FEMALE";
+    if (Object.keys(updatedDocument).length < 2) {
+        alertMessage(false, "Please provide valid inputs!");
+        return;
+    }
 
     fetch('/', {
         method: "put",
@@ -116,11 +148,15 @@ function editClient(id) {
     }).then(response => {
         return response.json();
     }).then(jsonResponse => {
-        if (jsonResponse.ok) {
+        if (jsonResponse.ok && !jsonResponse.error) {
             const editBtn = document.getElementById('editBtn' + jsonResponse.value._id);
             const editedChild = editBtn.parentNode.parentNode.parentNode;
             const updatedChild = getTemplate(jsonResponse.value);
             clientsList.replaceChild(updatedChild, editedChild);
+            alertMessage(true, "Successfully updated client : " + jsonResponse.value.firstName + " " + jsonResponse.value.lastName);
+        } else {
+            alertMessage(false, "Error with editing the form!");
+            console.log(jsonResponse.error);
         }
         resetInputs();
     });
